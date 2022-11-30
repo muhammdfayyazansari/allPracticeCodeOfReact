@@ -1,0 +1,341 @@
+.mainBody{
+  background: #000428;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #004e92, #000428);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #004e92, #000428); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  /* background-image: linear-gradient(to left, #4b326b 0%, #330867 100%) !important; */
+  /* background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%) !important; */
+  /* background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(37,145,251,0.98) 0.1%, rgba(0,7,128,1) 99.8% ); */
+  /* background-image: radial-gradient( circle 610px at 5.2% 51.6%,  rgba(5,8,114,1) 0%, rgba(7,3,53,1) 97.5% ); */
+  /* background-image: radial-gradient( circle 976px at 51.2% 51%,  rgba(11,27,103,1) 0%, rgba(16,66,157,1) 0%, rgba(11,27,103,1) 17.3%, rgba(11,27,103,1) 58.8%, rgba(11,27,103,1) 71.4%, rgba(16,66,157,1) 100.2%, rgba(187,187,187,1) 100.2% ); */
+  /* background-repeat: no-repeat; */
+  /* min-height: 100vh;
+  display: flex;
+  align-content: space-between; */
+  color: #ffffff;
+  display: block;
+  height: 100vh;
+  width: 100vw;
+}
+
+
+
+.userBody{
+  /* background: rgb(2,0,36); */
+  background-color: #010101;
+/* background: linear-gradient(90deg, rgb(16, 142, 173) 0%, rgb(26, 159, 163) 35%, rgba(0,212,255,1) 55%) !important; */
+background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+}
+.outer-div{
+  border-radius: 10px !important;
+  background-color:#05044C;
+
+
+}
+.left-div{
+  color: #ffffff;
+  padding: 0% 10% !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color:#05044C;
+  border-top-left-radius:10px ;
+  border-bottom-left-radius:10px ;
+
+}
+.main{
+  color: #fff;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+  /* background-color: #2980b9!important; */
+  background-color: #000428!important;
+  /* background-color: rgba(0,212,255,1) !important; */
+  border-top-right-radius:10px ;
+  border-bottom-right-radius:10px ;
+  border-radius: 0.3rem;
+  
+
+}
+.username{
+  margin-bottom: 20px !important;
+  
+}
+.btn-primary{
+  background-color: #05044C !important;
+}
+button:focus, button:active{
+box-shadow: none;
+outline: 0px;
+border: none;
+}
+
+table{
+  border-collapse:separate; 
+  border-spacing: 0 1em;
+  
+}
+.bck-trans{
+  background-color: rgb(0, 4, 40,0.6);
+  padding: 6px 0px;
+  transition: ease 0.2s ;
+}
+.bck-trans:hover{
+  background-color: rgb(0, 4, 40,0.8);
+  cursor: pointer;
+
+}
+.bg-img-color{
+  background-color: #FF3CAC;
+  background-image: linear-gradient(to left, #784BA0 50%, #2B86C5 100%);
+  
+
+  /* background: #43cea2;  fallback for old browsers */
+/* background: -webkit-linear-gradient(to right, #185a9d, #43cea2);  Chrome 10-25, Safari 5.1-6 */ 
+/* background: linear-gradient(to right, #185a9d, #43cea2); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+/* background-color: #0093E9;
+background-image: linear-gradient(90deg, #0093E9 0%, #80D0C7 100%); */
+border-radius: 10px;
+padding: 1em 0em;
+
+}
+
+
+
+
+
+/* 
+.mx-0 {
+  margin-top: 0 !important;
+}
+.m{
+  margin: 0 !important;
+}
+.m-1 {
+  margin: 0.25rem !important;
+}
+.m-2 {
+  margin: 0.50rem !important;
+}
+.m-3 {
+  margin: 1rem !important;
+}
+.m-4 {
+  margin: 1.5rem !important;
+}
+.m-5{
+  margin: 3rem !important;
+}
+.m {
+  margin: 0 !important;
+}
+
+
+.my-0 {
+  margin-top: 0 !important;
+}
+.mt-0 {
+  margin-top: 0 !important;
+}
+.mr-0 {
+  margin-top: 0 !important;
+}
+.mb-0 {
+  margin-top: 0 !important;
+}
+.ml-0 {
+  margin-top: 0 !important;
+}
+
+
+.mx-1 {
+  margin-left: 0.25rem !important;
+}
+.my-1 {
+  margin-left: 0.25rem !important;
+}
+.mt-1 {
+  margin-left: 0.25rem !important;
+}
+.mr-1 {
+  margin-left: 0.25rem !important;
+}
+.mb-1 {
+  margin-left: 0.25rem !important;
+}
+.ml-1 {
+  margin-left: 0.25rem !important;
+}
+
+
+
+
+.mx-2 {
+  margin-left: 0.50rem !important;
+}
+.my-2 {
+  margin-left: 0.50rem !important;
+}
+.mt-2 {
+  margin-left: 0.50rem !important;
+}
+.mr-2 {
+  margin-left: 0.50rem !important;
+}
+.mb-2 {
+  margin-left: 0.50rem !important;
+}
+.ml-2 {
+  margin-left: 0.50rem !important;
+}
+
+
+.mx-3 {
+  margin-left: 1rem !important;
+}
+.my-3 {
+  margin-left: 1rem !important;
+}
+.mt-3 {
+  margin-left: 1rem !important;
+}
+.mr-3 {
+  margin-left: 1rem !important;
+}
+.mb-3 {
+  margin-left: 1rem !important;
+}
+.ml-3 {
+  margin-left: 1rem !important;
+}
+
+.mx-4 {
+  margin-left: 1.5rem !important;
+}
+.my-4 {
+  margin-left: 1.5rem !important;
+}
+.mt-4 {
+  margin-left: 1.5rem !important;
+}
+.mr-4 {
+  margin-left: 1.5rem !important;
+}
+.mb-4 {
+  margin-left: 1.5rem !important;
+}
+.ml-4 {
+  margin-left: 1.5rem !important;
+}
+
+.mx-5 {
+  margin-left: 3rem !important;
+}
+.my-5 {
+  margin-left: 3rem !important;
+}
+.mt-5 {
+  margin-left: 3rem !important;
+}
+.mr-5 {
+  margin-left: 3rem !important;
+}
+.mb-5 {
+  margin-left: 3rem !important;
+}
+.ml-5 {
+  margin-left: 3rem !important;
+}
+
+
+
+
+.px-2 {
+  padding-left:  0.50 !important;
+  padding-right:  0.50 !important;
+}
+
+.p-3 {
+  padding: 1rem !important;
+}
+.mt-0 {
+  margin-top: 0 !important;
+}
+
+.ml-1 {
+  margin-left: 0.25rem !important;
+}
+
+.px-2 {
+  padding-left:  0.50 !important;
+  padding-right:  0.50 !important;
+}
+
+.p-3 {
+  padding: 1rem !important;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* width : (
+  property: width,
+  class: w,
+  values: (
+    25: 25%,
+    50: 50%,
+    75: 75%,
+    100: 100%,
+    auto: auto
+  )
+),
+"max-width": (
+  property: max-width,
+  class: mw,
+  values: (100: 100%)
+),
+"viewport-width": (
+  property: width,
+  class: vw,
+  values: (100: 100vw)
+),
+"min-viewport-width": (
+  property: min-width,
+  class: min-vw,
+  values: (100: 100vw)
+),
+"height": (
+  property: height,
+  class: h,
+  values: (
+    25: 25%,
+    50: 50%,
+    75: 75%,
+    100: 100%,
+    auto: auto
+  )
+),
+"max-height": (
+  property: max-height,
+  class: mh,
+  values: (100: 100%)
+),
+"viewport-height": (
+  property: height,
+  class: vh,
+  values: (100: 100vh)
+),
+"min-viewport-height": (
+  property: min-height,
+  class: min-vh,
+  values: (100: 100vh)
+), */

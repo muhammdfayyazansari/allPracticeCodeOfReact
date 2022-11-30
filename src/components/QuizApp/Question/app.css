@@ -1,0 +1,9 @@
+.questionDiv{
+  display: block;
+  /* background-color: red; */
+  background-color: #2980B9;
+  /* background-color: #6a11cb; */
+  width: 80%;
+  height: 40%;
+  padding: 10px;
+ }

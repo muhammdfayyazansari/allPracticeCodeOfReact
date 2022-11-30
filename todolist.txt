@@ -1,0 +1,110 @@
+ <div className="container d-flex flex-column  ">
+    <div className="row">
+      <div className="col-12 d-flex justify-content-center mb-4 pt-3">
+        <h1 className="text-break">ToDo List</h1>
+      </div>
+    </div>
+    <div className="row d-flex justify-content-center">
+      <div className="col-12 col-sm-10 col-md-8 bg-img-color  px-sm-5 px-3">
+        <div className="row d-flex justify-content-center pb-4 ">
+          <div className="col-12 col-sm-11 col-md-10 col-lg-9 col-xl-8 p-0 ">
+            <div className="form-row d-flex align-items-center wrap-nowrap">
+              <div className="col-9 col-sm-9">
+                {/* Input user enter items here */}
+                <form onsubmit="addItems(); return false;">
+                  <input
+                    type="text"
+                    className="form-control form-control-md"
+                    id="item"
+                    placeholder="Enter Items...."
+                  />
+                </form>
+              </div>
+              <div className="col-3 col-sm-3 d-flex align-items-center justify-content-end pr-2">
+                {/* ADD ITEMS  BUTTON HERE  */}
+                <button
+                  type="submit"
+                  onclick="addItems()"
+                  className="btn btn-outline-success mr-1 px-1 px-md-2 px-lg-2 text-lead font-weight-lighter "
+                > 
+                
+                  {/* <i class="fa-solid fa-square-plus px-1" ></i> */}
+                  <FontAwesomeIcon  icon={faSquarePlus}></FontAwesomeIcon>
+                </button>
+                {/* DELETE ALL BUTTON HERE */}
+                <button
+                  type="button"
+                  onclick="deleteAll()"
+                  className="btn btn-outline-danger ml-1 px-1 px-md-2 w-45 px-lg-2 text-lead font-weight-lighter"
+                > 
+                <FontAwesomeIcon className="mx-1" icon={faTrashCan}></FontAwesomeIcon>
+                  {/* <i className="fa-solid fa-trash-can px-1" /> */}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="row d-flex justify-content-center pt-1 ">
+          <div
+            className="col-12 col-sm-11 col-md-10 col-lg-9 col-xl-8 p-0"
+            id="display"
+          >
+            {/* Main row which develop in JAVASCRIPT  */}
+            <div className="form-row d-flex align-items-start wrap-nowrap rounded bck-trans mb-1 pt-1">
+              <div className="col-9 col-sm-9 m-0 px-2 text-break ">
+                <span className="text-break text-justify text-light">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
+                  lore
+                </span>
+              </div>
+              <div className="col-3 col-sm-3 d-flex align-items-start justify-content-center m-0 p-0 ">
+                <button
+                  type="button"
+                  className="btn btn-outline-success mr-2 px-1 px-md-2 px-lg-3 text-lead font-weight-lighter"
+                >
+                  <FontAwesomeIcon className="px-1" icon={faPen}></FontAwesomeIcon>
+                  {/* <i className="fa-solid fa-pen px-1" /> */}
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-danger px-1 px-md-2 w-45 px-lg-3 text-lead font-weight-lighter"
+                >
+                  <FontAwesomeIcon className="px-1" icon={faTrashCan}></FontAwesomeIcon>
+
+                  {/* <i className="fa-solid fa-trash-can px-1" /> */}
+                </button>
+              </div>
+            </div>
+            <div className="form-row d-flex align-items-start wrap-nowrap rounded bck-trans mb-1 pt-1">
+              <div className="col-9 col-sm-9 m-0 px-2 text-break  ">
+                <span className="text-break text-justify text-light ">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
+                  lore
+                </span>
+              </div>
+              <div className="col-3 col-sm-3 d-flex align-items-start justify-content-center m-0 p-0 ">
+                <button
+                  type="button"
+                  className="btn btn-outline-success mr-2 px-1 px-md-2 px-lg-3 text-lead font-weight-lighter"
+                >
+                  <FontAwesomeIcon className="px-1" icon={faPen}></FontAwesomeIcon>
+
+                  {/* <i className="fa-solid fa-pen px-1" /> */}
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-danger px-1 px-md-2 w-45 px-lg-3 text-lead font-weight-lighter"
+                >
+                  <FontAwesomeIcon className="px-1" icon={faTrashCan}></FontAwesomeIcon>
+
+                  {/* <i className="fa-solid fa-trash-can px-1" /> */}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

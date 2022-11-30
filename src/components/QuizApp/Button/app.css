@@ -1,0 +1,33 @@
+.buttonDiv{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  height: 10%;
+  width: 80%;
+  /* background-color: yellow; */
+  padding-left: 10px;
+}
+.nextButton{
+  border: solid 2px #2575fc;
+  
+  background-color: #000428;
+  border-radius: 3px;
+  transition: 0.3s ease;
+  font-weight: bold;
+  /* background-color: #2D6AF7; */
+  /* background-color: #282c34; */
+  padding: 5px 20px;
+  
+  color: white;
+
+
+
+}
+.nextButton:focus{
+  border: solid 2px #2575fc;
+}
+.nextButton:hover{
+  background-color: #2575fc;
+  border: solid 2px #000428;
+  border-radius: 5px;
+}
