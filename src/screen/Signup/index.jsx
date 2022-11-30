@@ -21,7 +21,7 @@ function Signup(props) {
   //   password: "12345678",
   //   confirmPassword: "12345678",
   // };
-  const [userData, setUserData] = useState(user);
+  const [userData, setUserData] =  useState(user);
 
 
   //   useEffect(()=>{
@@ -32,7 +32,7 @@ function Signup(props) {
   //     return ()=>{document.removeEventListener("click",listener)}
   // },[])
 
-  const handleSignUp = ()=>{
+  const handleSignUp  = ()=>{
     let emptyData={
       firstName : "",
       lastName : "",
@@ -41,7 +41,7 @@ function Signup(props) {
       confirmPassword : '',
     }
     createUser(userData);
-    setUserData(emptyData)
+    setUserData(emptyData);
   }
   return (
     <div
