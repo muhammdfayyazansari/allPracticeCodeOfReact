@@ -6,6 +6,8 @@ import CustomButton from "./../../components/CustomButton";
 // import {IsSignup} from './../Form/index'
 import { useState, useEffect } from "react";
 import { createUser } from "../../components/config/Firebase";
+import swal from "sweetalert";
+
 function Signup(props) {
   let user = {
     firstName: "",
@@ -14,6 +16,15 @@ function Signup(props) {
     password: "",
     confirmPassword: "",
   };
+  const goToLogInAfterSignedUp = async ()=>{
+    const swalResult = await swal(
+      "Registered successfully Completed !",
+      "You Signed Up!",
+      "success",
+    )
+    // console.log("swalResult >>>> ", swalResult)
+    return props.changeScreen();
+  }
   // let user = {
   //   firstName: "Muhammad Fayyaz",
   //   lastName: "Ansari",
@@ -21,8 +32,7 @@ function Signup(props) {
   //   password: "12345678",
   //   confirmPassword: "12345678",
   // };
-  const [userData, setUserData] =  useState(user);
-
+  const [userData, setUserData] = useState(user);
 
   //   useEffect(()=>{
   //     const listener =()=>{
@@ -32,17 +42,29 @@ function Signup(props) {
   //     return ()=>{document.removeEventListener("click",listener)}
   // },[])
 
-  const handleSignUp  = ()=>{
-    let emptyData={
-      firstName : "",
-      lastName : "",
-      email : "",
-      password : "",
-      confirmPassword : '',
+  const handleSignUp = async  () => {
+ 
+
+    const result = await createUser(userData);
+    console.log("result >>> ", result.message.user.uid);
+
+    {
+      !result.error
+        ? 
+        goToLogInAfterSignedUp()
+        
+
+        : swal(
+            result.message.slice(10),
+            "SignUp Failed!",
+            "error"
+          );
     }
-    createUser(userData);
-    setUserData(emptyData);
-  }
+    
+
+    // swal("Registered successfully Completed !", "You Signed Up!", "success");
+    // swal("Registered successfully Completed !", "You Signed Up!", "error");
+  };
   return (
     <div
       style={{
@@ -72,17 +94,17 @@ function Signup(props) {
           variant="outlined"
           value={userData.firstName}
           onChange={(e) => {
-            setUserData({...userData, firstName: `${e.target.value}`});
+            setUserData({ ...userData, firstName: `${e.target.value}` });
           }}
         />
-        <TextField 
-        id="outlined-basic" 
-        label="Last Name" 
-        variant="outlined" 
-        value={userData.lastName}
-        onChange={(e) => {
-          setUserData({...userData, lastName: `${e.target.value}`});
-        }}
+        <TextField
+          id="outlined-basic"
+          label="Last Name"
+          variant="outlined"
+          value={userData.lastName}
+          onChange={(e) => {
+            setUserData({ ...userData, lastName: `${e.target.value}` });
+          }}
         />
         <TextField
           id="outlined-basic"
@@ -90,7 +112,7 @@ function Signup(props) {
           variant="outlined"
           value={userData.email}
           onChange={(e) => {
-            setUserData({...userData, email: `${e.target.value}`});
+            setUserData({ ...userData, email: `${e.target.value}` });
           }}
         />
         <TextField
@@ -100,7 +122,7 @@ function Signup(props) {
           value={userData.password}
           autoComplete="current-password"
           onChange={(e) => {
-            setUserData({...userData, password: `${e.target.value}`});
+            setUserData({ ...userData, password: `${e.target.value}` });
           }}
         />
         <TextField
@@ -110,7 +132,7 @@ function Signup(props) {
           value={userData.confirmPassword}
           autoComplete="current-password"
           onChange={(e) => {
-            setUserData({...userData, confirmPassword: `${e.target.value}`});
+            setUserData({ ...userData, confirmPassword: `${e.target.value}` });
           }}
         />
         <Stack spacing={2} direction="row">
@@ -121,7 +143,14 @@ function Signup(props) {
               justifyContent: "space-between",
             }}
           >
-            <Button variant="contained" onClick={()=>{handleSignUp()}}>Signup</Button>
+            <Button
+              variant="contained"
+              onClick={() => {
+                handleSignUp();
+              }}
+            >
+              Signup
+            </Button>
             <Button
               variant="outlined"
               onClick={() => {

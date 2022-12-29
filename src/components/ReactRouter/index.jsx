@@ -19,11 +19,10 @@ function ReactRouter() {
     // <Home />
     // <About />
     <BrowserRouter>
-      <Routes>
 
+      <Routes>
         {/* <Route path="/" Component={Home} />
         <Route path="/about" Component={About} /> */}
-
         <Route path="/" element={<Layout />}  >
         <Route index element={<Home />} />
         <Route path="/about" element={<About />} />

@@ -6,14 +6,41 @@ import CustomButton from "./../../components/CustomButton";
 // import {IsSignup} from './../Form/index'
 import { useState } from "react";
 import { logInUser } from "../../components/config/Firebase";
+import swal from "sweetalert";
+
 
 function Login(props) {
   let currentUser = { email: "", password: "" };
   const [logInData, setLogInData] = useState(currentUser);
   
-  const handleLogIn = () => {
-    logInUser(logInData);
-    setLogInData(currentUser);
+  const handleLogIn = async () => {
+    const res = await logInUser(logInData);
+    console.log("handle response >>>> ", res)
+
+    if(!res.error){
+      const swalResultInLogIn= async ()=>{
+        let swalReturn = await swal(
+          "Logged In successfully Completed !",
+          "You Logged In!",
+          "success",
+        )
+        console.log("swalReturn>>>>", swalReturn)
+        return props.setDashboard(true);
+      }
+      swalResultInLogIn();
+      setLogInData(currentUser);
+    }else{
+      swal(
+        res.message,
+        "Logged In Failed!",
+        "error"
+      );
+    }
+
+
+
+
+    
   };
 
   return (

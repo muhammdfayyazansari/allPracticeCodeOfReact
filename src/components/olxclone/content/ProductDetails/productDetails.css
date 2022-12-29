@@ -1,0 +1,14 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+/* .imageDiv{
+
+} */
+.forBorder{
+  border: 1px solid #dbdbdb;
+  padding: 10px;
+  border-radius: 5px;
+}
