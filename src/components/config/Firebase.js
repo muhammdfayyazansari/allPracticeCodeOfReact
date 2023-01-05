@@ -3,6 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getStorage, uploadBytes, ref, getDownloadURL } from "firebase/storage";
 import {
   collection,
   addDoc,
@@ -37,6 +38,9 @@ const auth = getAuth(app);
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
 // const analytics = getAnalytics(app);
+
+// Initialize Cloud Storage and get a reference to the service
+const storage = getStorage(app);
 
 const createUser = async (userData) => {
   console.log("userData in create User >>>>", userData);
@@ -141,12 +145,13 @@ const latestFormData = async (formData) => {
   }
 };
 const sendProductData = async (product, userUID) => {
-  let finalProduct = {
-    ...product,
-    image:
-      "https://www.bugatti.com/fileadmin/_processed_/sei/p121/se-image-4f750982624e527a8b1003408e4febcf.jpg",
-    uid: userUID,
-  };
+  let finalProduct = {...product,uid: userUID};
+  // let finalProduct = {
+  //   ...product,
+  //   image:
+  //     "https://www.bugatti.com/fileadmin/_processed_/sei/p121/se-image-4f750982624e527a8b1003408e4febcf.jpg",
+  //   uid: userUID,
+  // };
   try {
     const docRef = await addDoc(collection(db, "products"), finalProduct);
     console.log("Document written   with Id: ", docRef.id);
@@ -206,10 +211,31 @@ const updateMyProduct = async (productData, docRef) => {
 
     const result = await updateDoc(updateDocRef, { ...productData });
 
-    return {error : false , message: "Product Update ho gai"}
+    return { error: false, message: "Product Update ho gai" };
   } catch (error) {
-    return {error : true , message: error}
+    return { error: true, message: error };
+  }
+};
 
+const uploadImage = async (imageData) => {
+  if (imageData) {
+    console.log("imageData", imageData[0]);
+    try {
+      const imageRef = ref(storage, `productPic/${imageData[0].name}`);
+      const result = await uploadBytes(imageRef, imageData[0]);
+      console.log("imageData result", result);
+      const url = await getDownloadURL(result.ref);
+      console.log("imageData url", url);
+      return url;
+    } catch (error) {
+      console.log("imageData error", error.message);
+      return error.message;
+    }
+  } else {
+    const url = null;
+    console.log("imageData", url);
+
+    return url;
   }
 };
 
@@ -223,5 +249,6 @@ export {
   getProductsData,
   db,
   getMyProducts,
-  updateMyProduct
+  updateMyProduct,
+  uploadImage,
 };

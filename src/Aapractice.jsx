@@ -26,8 +26,8 @@ function Aapractice(){
 
       // <TestForm />
       // <OlxClone />  
-      // <OlxRouter />
-      <ReduxSlicePractice />
+      <OlxRouter />
+      // <ReduxSlicePractice />
 
 
    

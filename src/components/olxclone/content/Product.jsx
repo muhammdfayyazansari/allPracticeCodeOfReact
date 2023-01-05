@@ -5,11 +5,13 @@ import CardMedia from "@mui/material/CardMedia";
 import { CardActionArea, Typography } from "@mui/material";
 import { Grid, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { Box } from "@mui/system";
 
 const Product = (props) => {
   const navigate = useNavigate();
 
-  console.log("Props.myProducts>>>>", props.myProducts);
+
+  // console.log("Props.myProducts>>>>", props.myProducts);
   if (props.myProducts) {
     return (
       <Grid item xs={12} sm={6} md={3}>
@@ -99,13 +101,13 @@ const Product = (props) => {
     <Grid item xs={12} sm={6} md={3}>
       <Card
         onClick={() => {
-          console.log("fayyaz ansari");
-          console.log("Products in Products pages>>", props.allProducts);
-          console.log("product index >>> ", props.productIndex);
-          console.log(
-            "product index >>> ",
-            props.allProducts[props.productIndex]
-          );
+          // console.log("fayyaz ansari");
+          // console.log("Products in Products pages>>", props.allProducts);
+          // console.log("product index >>> ", props.productIndex);
+          // console.log(
+          //   "product index >>> ",
+          //   props.allProducts[props.productIndex]
+          // );
           navigate(
             `/productDetails/${props.allProducts[props.productIndex].docId}`,
             { state: props.allProducts[props.productIndex] }
@@ -122,6 +124,7 @@ const Product = (props) => {
             alt="Bughatti Chiron"
           />
           <CardContent>
+            <Box component="span" sx={{display:"flex", justifyContent:"space-between"}}>
             <Typography
               gutterBottom
               variant="subtitle2"
@@ -130,6 +133,8 @@ const Product = (props) => {
             >
               {props.title}
             </Typography>
+          
+            </Box>
             <Typography
               gutterBottom
               variant="h5"

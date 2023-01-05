@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Box, Button } from "@mui/material";
 import { useState, useEffect } from "react";
-import { auth, db } from "./../../config/Firebase";
+import { auth, db, uploadImage } from "./../../config/Firebase";
 import Product from "./Product";
 import { doc, onSnapshot, collection } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
@@ -12,7 +12,7 @@ import { darkTheme } from "../../../store/actions/theme/themeChangeAction";
 const Content = () => {
   const dispatch = useDispatch();
   const reduxData = useSelector(state => state.themeReducer);
-  console.log("redux Data in Content >>>> ", reduxData.value);
+  // console.log("redux Data in Content >>>> ", reduxData.value);
   let {value} = reduxData; 
   const [products, setProduct] = useState([1]);
   const [userUID, setUserUID] = useState();
@@ -44,6 +44,7 @@ const Content = () => {
       }
     });
 
+
     // const unsub = onSnapshot(doc(db, "products"), (doc) => {
     //   console.log("Current data: ", doc.data());
     // });
@@ -61,17 +62,27 @@ const Content = () => {
     // };
     // getData();
   }, []);
+  // useEffect(()=>{
+  //   // <button onClick={()=>{uploadImage(imageData)}}>upload Image</button>
+  //   console.log("imageData useEffect chala")
+  //   uploadImage(imageData);
+  // }, [imageData])
   console.log("Products>>>>>", products);
 
   if (userUID) {
     return (
       <div>
         {/* <AdPost /> */}
-        <Box sx={{ mt: { xs: "220px", md: "100px" } }}>
+        <Box sx={{ mt: { xs: "230px", md: "110px" } }}>
+
           {/* <Grid container spacing={2} sx={{ background: "#fff", padding: 5 }}> */}
           <Grid container spacing={2} sx={{ ...value, padding: 5 }}>
             <Grid item xs={12}>
               <Grid container justifyContent="flex-end">
+                <Grid item>
+      
+
+                </Grid>
                 <Grid
                   item
                   xs={8}
@@ -80,6 +91,7 @@ const Content = () => {
                   lg={2}
                   sx={{ display: "flex", justifyContent: "flex-end" }}
                 >
+
                   <Button
                     variant="outline"
                     onClick={() => {
@@ -119,7 +131,7 @@ const Content = () => {
     return (
       <div>
        
-        <Box sx={{ mt: { xs: "220px", md: "100px" } }}>
+        <Box sx={{ mt: { xs: "230px", md: "110px" } }}>
           <Grid container spacing={2} sx={{ background: "#fff", padding: 5 }}>
             {products.map((item, index) => {
               return (

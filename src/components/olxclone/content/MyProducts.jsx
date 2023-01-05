@@ -58,7 +58,7 @@ const MyProducts = () => {
     <div>
       {/* <AdPost /> */}
       <Header userLogOut={userLogOut} />
-      <Box sx={{ mt: { xs: "220px", md: "100px" } }}>
+      <Box sx={{ mt: { xs: "230px", md: "110px" } }}>
         <Grid container spacing={2} sx={{ background: "#fff", padding: 5 }}>
           <Grid item xs={12}>
             <Grid container justifyContent="flex-end">

@@ -58,14 +58,14 @@ const UpdateProduct = (props) => {
 
   }, []);
   const Params = useParams();
-  console.log("Params>>>>", Params);
+  // console.log("Params>>>>", Params);
 
 
   const updateNow = async ()=>{
 
     const result = await updateMyProduct(product, Params.docref);
     // handleClose()
-    console.log("result update product>> ", result.error, result .message)
+    console.log("result update product>> ", result.error, result.message)
     if(!result.error){
       navigate(`/myproducts/${uid}`)
       // console.log(product[0].uid)

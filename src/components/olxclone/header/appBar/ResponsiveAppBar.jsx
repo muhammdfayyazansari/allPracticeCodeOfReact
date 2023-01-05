@@ -30,13 +30,22 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import Stack from "@mui/material/Stack";
 import { useSelector, useDispatch } from "react-redux";
-import { darkTheme, defaultTheme } from "../../../../store/actions/theme/themeChangeAction";
-
+import { useNavigate } from "react-router-dom";
+import {
+  darkTheme,
+  defaultTheme,
+} from "../../../../store/actions/theme/themeChangeAction";
+import Badge from "@mui/material/Badge";
+import IconButton from "@mui/material/IconButton";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 function ResponsiveAppBar(props) {
   const dispatch = useDispatch();
-  const reduxData = useSelector(state => state.themeReducer)
-  console.log("app bar redux Data >>> ", reduxData)
+  const navigate = useNavigate();
+  const reduxData = useSelector((state) => state.themeReducer);
+  const addToCartReducerData = useSelector((state) => state.addToCartReducer);
+  // console.log("addToCartReducerData In appbbar>>", addToCartReducerData)
+  // console.log("app bar redux Data >>> ", reduxData);
   const [dashboard, setDashboard] = useState(false);
   const [forSignUP, setForSignUP] = useState(true);
   const [userUID, setUserUID] = useState();
@@ -44,21 +53,32 @@ function ResponsiveAppBar(props) {
   // const [theme, setTheme] = useState({ background: "#F7F8F8", color: "#002F34" })
 
   const [userData, setUserData] = useState({});
-  
+  const StyledBadge = styled(Badge)(({ theme }) => ({
+    "& .MuiBadge-badge": {
+      right: -3,
+      top: 13,
+      border: `2px solid ${theme.palette.background.paper}`,
+      padding: "0 4px",
+    },
+  }));
+
   // console.log(userData);
   // const darkTheme = { background: "#111B21", color: "#ffffff" };
-  const dark = { background: "#002F34", color: "#ffffff" , darkThem: true };
-  const lightTheme = {background: "#F7F8F8", color: "#002F34", darkTheme : false};
-  const handleChangeTheme = ()=>{
-    if(reduxData.value.darkThem ){
-      dispatch(defaultTheme(lightTheme))
-    }else{
-      dispatch(darkTheme(dark))
+  const dark = { background: "#002F34", color: "#ffffff", darkThem: true };
+  const lightTheme = {
+    background: "#F7F8F8",
+    color: "#002F34",
+    darkTheme: false,
+  };
+  const handleChangeTheme = () => {
+    if (reduxData.value.darkThem) {
+      dispatch(defaultTheme(lightTheme));
+    } else {
+      dispatch(darkTheme(dark));
     }
-    console.log("change chalala", reduxData.value)
-  }
+    console.log("change chalala", reduxData.value);
+  };
 
-  
   const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 62,
     height: 34,
@@ -186,13 +206,14 @@ function ResponsiveAppBar(props) {
 
   return (
     <AppBar position="fixed">
-      <Container maxWidth="xl"
-      // className={
+      <Container
+        maxWidth="xl"
+        // className={
         // className="defaultTheme"
-      //  sx={{ background: "#002F34", color: "#ffffff" }}
-      //  sx={{ background: "#F7F8F8", color: "#002F34" }}
-      sx={reduxData.value}
-       >
+        //  sx={{ background: "#002F34", color: "#ffffff" }}
+        //  sx={{ background: "#F7F8F8", color: "#002F34" }}
+        sx={reduxData.value}
+      >
         <Grid
           container
           sx={{
@@ -213,20 +234,40 @@ function ResponsiveAppBar(props) {
               </Box>
             </Typography>
           </Grid>
-          <Grid item xs={7} sm={8} md={9} sx={{display:"flex", justifyContent:"space-between",alignItems:"center", alignContent:"center"}}>
+          <Grid
+            item
+            xs={7}
+            sm={8}
+            md={9}
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              alignContent: "center",
+            }}
+          >
             <Typography variant="subtitle1">
               <FontAwesomeIcon icon={faBuilding} />
               <Box component="span" sx={{ ml: 1 }}>
                 Building
               </Box>
             </Typography>
-            <FormControlLabel
-              control={<MaterialUISwitch sx={{ m: 1 }}  />}
-              onChange={handleChangeTheme}
-              checked={reduxData.value.darkThem}
-              inputProps={{ 'aria-label': 'controlled' }}
-              label="Dark Theme"
-            />
+            <Box component="span">
+              <Box component="span" sx={{ mr: 3}} onClick={()=>{navigate("/cart")}}>
+                <IconButton aria-label="cart">
+                  <StyledBadge badgeContent={Object.keys(addToCartReducerData['productsInCart']).length} color="secondary">
+                    <ShoppingCartIcon />
+                  </StyledBadge>
+                </IconButton>
+              </Box>
+
+              <FormControlLabel
+                control={<MaterialUISwitch sx={{ m: 1 }} />}
+                onChange={handleChangeTheme}
+                checked={reduxData.value.darkThem}
+                inputProps={{ "aria-label": "controlled" }}
+              />
+            </Box>
           </Grid>
         </Grid>
 

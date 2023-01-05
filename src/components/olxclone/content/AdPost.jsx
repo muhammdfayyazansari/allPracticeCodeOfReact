@@ -9,8 +9,10 @@ import { Grid } from "@mui/material";
 import { TextField } from "@mui/material";
 import { InputAdornment } from "@mui/material";
 import { useState } from "react";
-import { sendProductData } from "./../../config/Firebase";
+import { sendProductData, uploadImage } from "./../../config/Firebase";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import swal from "sweetalert";
 
 const style = {
   position: "absolute",
@@ -27,6 +29,7 @@ const style = {
 };
 
 export default function AdPost(props) {
+  const [imageData, setImageData] = useState(null);
   const navigate = useNavigate();
   const customInput = {
     "& .MuiInputLabel-root": { borderColor: "#002F34" }, //styles the label
@@ -46,8 +49,29 @@ export default function AdPost(props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState({
+    title: null,
+    description: null,
+    price: null,
+    address: null,
+    number: null,
+    image: null,
+  });
+  console.log("Product in adpost >>>", product);
   const postNow = async () => {
+    if (!product.image) {
+      return swal("Please Wait Image Uploading....");
+    }
+    if (
+      !product.title ||
+      !product.description ||
+      !product.price ||
+      !product.address ||
+      !product.number ||
+      !product.image
+    ) {
+      return swal("All fields are required!");
+    }
     handleClose();
     console.log("postNow");
     const result = await sendProductData(product, props.userUID);
@@ -56,12 +80,37 @@ export default function AdPost(props) {
         "get product wala function run kar do , docRef.id>>",
         result.docRef
       );
+      setProduct({
+        title: null,
+        description: null,
+        price: null,
+        address: null,
+        number: null,
+        image: null,
+      })
       navigate("/");
       // props.changeForGetData();
     } else {
       console.log("product add nahi hui error ye hai", result.message);
     }
   };
+  useEffect(() => {
+    // <button onClick={()=>{uploadImage(imageData)}}>upload Image</button>
+    if (imageData) {
+      console.log("imageData useEffect chala");
+      async function imageDataFunction() {
+        let imageUrl = await uploadImage(imageData);
+        if (imageUrl) {
+          console.log(imageUrl);
+          setProduct({...product, image: imageUrl})
+          navigate("/");
+        } else {
+          console.log("imageData", imageUrl);
+        }
+      }
+      imageDataFunction();
+    }
+  }, [imageData]);
 
   return (
     <div>
@@ -195,29 +244,61 @@ export default function AdPost(props) {
                 }
               />
             </Grid>
-            <Grid item xs={12} sx={{ my: 2 }}>
-              <button
-                style={{
-                  background: "#002F34",
-                  padding: "8px 20px",
-                  border: "0px solid #000",
-                  borderRadius: "2px",
-                  cursor: "pointer",
-                }}
-                onClick={() => {
-                  postNow();
-                }}
-              >
-                <Typography
-                  variant="subtitle1"
-                  sx={{
-                    fontWeight: 700,
-                    color: "#fff",
+            <Grid
+              item
+              xs={12}
+              sx={{
+                my: 2,
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              {/* <Box component="span">
+                <label for="myfile">Upload Image: &nbsp;&nbsp;&nbsp;&nbsp; </label>
+                <input type="file" id="myfile" name="myfile" onChange={(e)=>{console.log(e.target.value)}} />
+
+                </Box> */}
+              <Box component="span">
+                <input
+                  accept="image/"
+                  type="file"
+                  id="selecImage"
+                  style={{ display: "none" }}
+                  onChange={(e) => {
+                    setImageData(e.target.files);
+                  }}
+                />
+                <label htmlFor="selecImage">
+                  <Button component="span" variant="text">
+                    Upload Image
+                  </Button>
+                </label>
+              </Box>
+              <Box component="span">
+                <button
+                  style={{
+                    background: "#002F34",
+                    padding: "8px 20px",
+                    border: "0px solid #000",
+                    borderRadius: "2px",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    postNow();
                   }}
                 >
-                  Post Now
-                </Typography>
-              </button>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      fontWeight: 700,
+                      color: "#fff",
+                    }}
+                  >
+                    Post Now
+                  </Typography>
+                </button>
+              </Box>
             </Grid>
           </Grid>
         </Box>

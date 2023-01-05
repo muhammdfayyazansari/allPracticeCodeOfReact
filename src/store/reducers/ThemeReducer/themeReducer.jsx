@@ -1,7 +1,7 @@
 const initialState = { value: { background: "#F7F8F8", color: "#002F34", darkTheme : false} };
 
 function themeReducer(state = initialState, action) {
-  console.log("action payload in reducer>>> ", action.payload);
+  // console.log("action payload in reducer>>> ", action.payload);
 
   switch (action.type) {
     case "darktheme":
